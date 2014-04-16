@@ -15,17 +15,18 @@ public class My2048 {
 	private void moveUpToEnd(int index) {
 		if (index < 4)
 			return;
-		
+
 		int x = index % 4;
 		int y = index / 4;
 		for (int c = y; c > 0; c--)
 			if (board[x + (c - 1) * 4] == 0) {
 				board[x + (c - 1) * 4] = board[x + (c) * 4];
-				board[x + (c ) * 4] = 0;
+				board[x + (c) * 4] = 0;
 			}
 	}
+
 	public void moveDown() {
-		for (int i = 15 ; i >= 0; i--) {
+		for (int i = 15; i >= 0; i--) {
 			moveDownToEnd(i);
 		}
 	}
@@ -33,30 +34,30 @@ public class My2048 {
 	private void moveDownToEnd(int index) {
 		if (index > 11)
 			return;
-		
+
 		int x = index % 4;
 		int y = index / 4;
-		for (int c = y; c >=0; c--)
+		for (int c = y; c >= 0; c--)
 			if (board[x + (c + 1) * 4] == 0) {
 				board[x + (c + 1) * 4] = board[x + (c) * 4];
-				board[x + (c ) * 4] = 0;
+				board[x + (c) * 4] = 0;
 			}
-		
-	}
 
+	}
 
 	public int getValue(int i) {
 		return board[i];
 	}
-	
+
 	public void printBoard() {
 		int index = 0;
 		System.out.println();
-		for(int i : board) {
-			System.out.print("[" + i + "]" );
-		    index++;
-		    if(index % 4 ==0) System.out.println();
-		    
+		for (int i : board) {
+			System.out.print("[" + i + "]");
+			index++;
+			if (index % 4 == 0)
+				System.out.println();
+
 		}
 	}
 
@@ -69,39 +70,125 @@ public class My2048 {
 	private void AddUpToEnd(int index) {
 		if (index < 4)
 			return;
-		
+
 		int x = index % 4;
 		int y = index / 4;
 		for (int c = y; c > 0; c--)
 			if (board[x + (c - 1) * 4] == board[x + (c) * 4]) {
 				board[x + (c - 1) * 4] += board[x + (c) * 4];
-				board[x + (c ) * 4] = 0;
+				board[x + (c) * 4] = 0;
 			}
-		
+
 	}
 
 	public void addAfterMoveDown() {
-		for (int i = 15; i >=0; i--) {
+		for (int i = 15; i >= 0; i--) {
 			AddDownToEnd(i);
 		}
 	}
 
 	private void AddDownToEnd(int index) {
-	
+
 		if (index > 11)
 			return;
-		
+
 		int x = index % 4;
 		int y = index / 4;
-		for (int c = y; c >=0; c--)
+		for (int c = y; c >= 0; c--)
 			if (board[x + (c + 1) * 4] == board[x + (c) * 4]) {
 				board[x + (c + 1) * 4] += board[x + (c) * 4];
-				board[x + (c ) * 4] = 0;
+				board[x + (c) * 4] = 0;
 			}
-		
-	}
-		
+
 	}
 
+	public void moveLeft() {
+		for (int i = 0; i < 16; i++) {
+			moveLeftEnd(i);
+		}
 
+	}
 
+	private void moveLeftEnd(int index) {
+		if (index % 4 == 0)
+			return;
+
+		int x = index % 4;
+		int y = index / 4;
+		for (int r = x; r > 0; r--) {
+			if (board[(r - 1) + (y) * 4] == 0) {
+				board[(r - 1) + (y) * 4] = board[r + y * 4];
+				board[(r + y * 4)] = 0;
+			}
+		}
+
+	}
+
+	public void moveRight() {
+		for (int i = 15; i >= 0; i--) {
+			moveRightEnd(i);
+		}
+
+	}
+
+	private void moveRightEnd(int index) {
+		if (index % 4 == 3)
+			return;
+
+		int x = index % 4;
+		int y = index / 4;
+		for (int r = x; r < 3; r++) {
+			if (board[(r + 1) + (y) * 4] == 0) {
+				board[(r + 1) + (y) * 4] = board[r + y * 4];
+				board[(r + y * 4)] = 0;
+			}
+		}
+
+	}
+
+	public void addAfterMoveLeft() {
+		for (int i = 0; i < 16; i++) {
+			AddLeftToEnd(i);
+		}
+
+	}
+
+	private void AddLeftToEnd(int index) {
+		if (index % 4 == 0)
+			return;
+
+		int x = index % 4;
+		int y = index / 4;
+		for (int r = x; r > 0; r--) {
+			if (board[(r - 1) + (y) * 4] == board[r + y * 4]) {
+				board[(r - 1) + (y) * 4] += board[r + y * 4];
+				board[(r + y * 4)] = 0;
+			}
+		}
+
+	}
+
+	public void addAfterMoveRight() {
+		for (int i = 15; i >= 0; i--) {
+			AddRightEnd(i);
+		}
+
+	}
+
+	private void AddRightEnd(int index) {
+		if (index % 4 == 3)
+			return;
+
+		int x = index % 4;
+		int y = index / 4;
+		for (int r = x; r < 3; r++) {
+			if (board[(r + 1) + (y) * 4] == board[r + y * 4]) {
+				board[(r + 1) + (y) * 4] += board[r + y * 4];
+				board[(r + y * 4)] = 0;
+			}
+		}
+
+		
+	}
+
+}

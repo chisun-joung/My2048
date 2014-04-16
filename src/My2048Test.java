@@ -29,6 +29,22 @@ public class My2048Test {
 	}
 	
 	@Test
+	public void testMoveLeft() {
+		My2048 myboard = new My2048(board);
+		myboard.moveLeft();
+		myboard.printBoard();
+		assertEquals(2,myboard.getValue(4));
+	}
+	
+	@Test
+	public void testMoveRight() {
+		My2048 myboard = new My2048(board);
+		myboard.moveRight();
+		myboard.printBoard();
+		assertEquals(2,myboard.getValue(7));
+	}
+	
+	@Test
 	public void testMoveUpandAdd() {
 		My2048 myboard = new My2048(board);
 		myboard.moveUp();
@@ -78,6 +94,45 @@ public class My2048Test {
 		
 		myboard.printBoard();
 		assertEquals(8,myboard.getValue(13));
+	}
+	
+	@Test
+	public void testMoveLeftandAdd() {
+		My2048 myboard = new My2048(board);
+		myboard.moveLeft();
+		myboard.addAfterMoveLeft();
+		myboard.moveLeft();
+		myboard.printBoard();
+		assertEquals(4,myboard.getValue(0));
+	}
+	
+	@Test
+	public void testMoveRightandAdd() {
+		My2048 myboard = new My2048(board);
+		myboard.moveRight();
+		myboard.addAfterMoveRight();
+		myboard.moveRight();
+		myboard.printBoard();
+		assertEquals(4,myboard.getValue(3));
+	}
+	
+	@Test
+	public void testMoveRightandAdd2() {
+		My2048 myboard = new My2048(board);
+		myboard.moveRight();
+		myboard.addAfterMoveRight();
+		myboard.moveRight();
+		
+		myboard.moveUp();
+		myboard.addAfterMoveUp();
+		myboard.moveUp();
+		
+		myboard.moveRight();
+		myboard.addAfterMoveRight();
+		myboard.moveRight();
+		
+		myboard.printBoard();
+		assertEquals(8,myboard.getValue(3));
 	}
 
 }
