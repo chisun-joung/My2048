@@ -47,9 +47,8 @@ public class My2048Test {
 	@Test
 	public void testMoveUpandAdd() {
 		My2048 myboard = new My2048(board);
-		myboard.moveUp();
-		myboard.addAfterMoveUp();
-		myboard.moveUp();
+		myboard.actionUp();
+		
 		myboard.printBoard();
 		assertEquals(4,myboard.getValue(1));
 	}
@@ -57,13 +56,8 @@ public class My2048Test {
 	@Test
 	public void testMoveUpandAdd2() {
 		My2048 myboard = new My2048(board);
-		myboard.moveUp();
-		myboard.addAfterMoveUp();
-		myboard.moveUp();
-		
-		myboard.moveUp();
-		myboard.addAfterMoveUp();
-		myboard.moveUp();
+		myboard.actionUp();
+		myboard.actionUp();
 		
 		myboard.printBoard();
 		assertEquals(8,myboard.getValue(1));
@@ -73,9 +67,8 @@ public class My2048Test {
 	@Test
 	public void testMoveDownAdd() {
 		My2048 myboard = new My2048(board);
-		myboard.moveDown();
-		myboard.addAfterMoveDown();
-		myboard.moveDown();
+		myboard.actionDown();
+		
 		myboard.printBoard();
 		assertEquals(4,myboard.getValue(13));
 	}
@@ -84,13 +77,8 @@ public class My2048Test {
 	public void testMoveDownAdd2() {
 		My2048 myboard = new My2048(board);
 		
-		myboard.moveDown();
-		myboard.addAfterMoveDown();
-		myboard.moveDown();
-		
-		myboard.moveDown();
-		myboard.addAfterMoveDown();
-		myboard.moveDown();
+		myboard.actionDown();
+		myboard.actionDown();
 		
 		myboard.printBoard();
 		assertEquals(8,myboard.getValue(13));
@@ -99,9 +87,9 @@ public class My2048Test {
 	@Test
 	public void testMoveLeftandAdd() {
 		My2048 myboard = new My2048(board);
-		myboard.moveLeft();
-		myboard.addAfterMoveLeft();
-		myboard.moveLeft();
+		
+		myboard.actionLeft();
+		
 		myboard.printBoard();
 		assertEquals(4,myboard.getValue(0));
 	}
@@ -109,9 +97,9 @@ public class My2048Test {
 	@Test
 	public void testMoveRightandAdd() {
 		My2048 myboard = new My2048(board);
-		myboard.moveRight();
-		myboard.addAfterMoveRight();
-		myboard.moveRight();
+		
+		myboard.actionRight();
+		
 		myboard.printBoard();
 		assertEquals(4,myboard.getValue(3));
 	}
@@ -119,17 +107,10 @@ public class My2048Test {
 	@Test
 	public void testMoveRightandAdd2() {
 		My2048 myboard = new My2048(board);
-		myboard.moveRight();
-		myboard.addAfterMoveRight();
-		myboard.moveRight();
 		
-		myboard.moveUp();
-		myboard.addAfterMoveUp();
-		myboard.moveUp();
-		
-		myboard.moveRight();
-		myboard.addAfterMoveRight();
-		myboard.moveRight();
+		myboard.actionRight();
+		myboard.actionUp();
+		myboard.actionRight();
 		
 		myboard.printBoard();
 		assertEquals(8,myboard.getValue(3));

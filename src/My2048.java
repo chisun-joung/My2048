@@ -21,7 +21,7 @@ public class My2048 {
 		int x = index % X_SIZE;
 		int y = index / X_SIZE;
 		for (int c = y; c > 0; c--)
-			packCell(x,x, c - 1, c);
+			packCell(x, x, c - 1, c);
 	}
 
 	public void addAfterMoveUp() {
@@ -29,16 +29,16 @@ public class My2048 {
 			AddUpToEnd(i);
 		}
 	}
-	
+
 	private void AddUpToEnd(int index) {
 		if (index < X_SIZE)
 			return;
-		
+
 		int x = index % X_SIZE;
 		int y = index / X_SIZE;
 		for (int c = y; c > 0; c--)
-			addPackedCell(x,x, c - 1, c);
-		
+			addPackedCell(x, x, c - 1, c);
+
 	}
 
 	public void moveDown() {
@@ -54,18 +54,8 @@ public class My2048 {
 		int x = index % X_SIZE;
 		int y = index / X_SIZE;
 		for (int c = y; c >= 0; c--)
-			packCell(x,x, c + 1, c);
+			packCell(x, x, c + 1, c);
 	}
-
-	private void packCell(int nX, int cX, int nY, int cY) {
-		if (board[nX + nY * X_SIZE] == 0) {
-			board[nX + nY * X_SIZE] = board[cX + cY * X_SIZE];
-			board[cX + cY * X_SIZE] = 0;
-		}
-	}
-
-
-
 
 	public void addAfterMoveDown() {
 		for (int i = MAX_CELL - 1; i >= 0; i--) {
@@ -74,29 +64,19 @@ public class My2048 {
 	}
 
 	private void AddDownToEnd(int index) {
-
 		if (index > MAX_CELL - X_SIZE - 1)
 			return;
 
 		int x = index % X_SIZE;
 		int y = index / X_SIZE;
 		for (int c = y; c >= 0; c--)
-			addPackedCell(x,x, c + 1, c);
+			addPackedCell(x, x, c + 1, c);
 	}
 
-	private void addPackedCell(int nX,int cX, int nY, int cY) {
-		if (board[nX + (nY) * X_SIZE] == board[cX + (cY) * X_SIZE]) {
-			board[nX + (nY) * X_SIZE] += board[cX + (cY) * X_SIZE];
-			board[cX + (cY) * X_SIZE] = 0;
-		}
-		
-	}
-	
 	public void moveLeft() {
 		for (int i = 0; i < MAX_CELL; i++) {
 			moveLeftEnd(i);
 		}
-
 	}
 
 	private void moveLeftEnd(int index) {
@@ -106,9 +86,25 @@ public class My2048 {
 		int x = index % X_SIZE;
 		int y = index / X_SIZE;
 		for (int r = x; r > 0; r--) {
-			packCell(r-1,r,y,y);
+			packCell(r - 1, r, y, y);
 		}
+	}
 
+	public void addAfterMoveLeft() {
+		for (int i = 0; i < MAX_CELL; i++) {
+			AddLeftToEnd(i);
+		}
+	}
+
+	private void AddLeftToEnd(int index) {
+		if (index % X_SIZE == 0)
+			return;
+
+		int x = index % X_SIZE;
+		int y = index / X_SIZE;
+		for (int r = x; r > 0; r--) {
+			addPackedCell(r - 1, r, y, y);
+		}
 	}
 
 	public void moveRight() {
@@ -124,35 +120,14 @@ public class My2048 {
 		int x = index % X_SIZE;
 		int y = index / X_SIZE;
 		for (int r = x; r < 3; r++) {
-			packCell(r+1,r,y,y);
+			packCell(r + 1, r, y, y);
 		}
-
-	}
-
-	public void addAfterMoveLeft() {
-		for (int i = 0; i < MAX_CELL; i++) {
-			AddLeftToEnd(i);
-		}
-
-	}
-
-	private void AddLeftToEnd(int index) {
-		if (index % X_SIZE == 0)
-			return;
-
-		int x = index % X_SIZE;
-		int y = index / X_SIZE;
-		for (int r = x; r > 0; r--) {
-			addPackedCell(r-1,r, y, y);
-		}
-
 	}
 
 	public void addAfterMoveRight() {
 		for (int i = MAX_CELL - 1; i >= 0; i--) {
 			AddRightEnd(i);
 		}
-
 	}
 
 	private void AddRightEnd(int index) {
@@ -162,9 +137,22 @@ public class My2048 {
 		int x = index % X_SIZE;
 		int y = index / X_SIZE;
 		for (int r = x; r < 3; r++) {
-			addPackedCell(r+1,r, y, y);
+			addPackedCell(r + 1, r, y, y);
 		}
+	}
 
+	private void packCell(int nX, int cX, int nY, int cY) {
+		if (board[nX + nY * X_SIZE] == 0) {
+			board[nX + nY * X_SIZE] = board[cX + cY * X_SIZE];
+			board[cX + cY * X_SIZE] = 0;
+		}
+	}
+
+	private void addPackedCell(int nX, int cX, int nY, int cY) {
+		if (board[nX + (nY) * X_SIZE] == board[cX + (cY) * X_SIZE]) {
+			board[nX + (nY) * X_SIZE] += board[cX + (cY) * X_SIZE];
+			board[cX + (cY) * X_SIZE] = 0;
+		}
 	}
 
 	public void printBoard() {
@@ -178,8 +166,32 @@ public class My2048 {
 
 		}
 	}
-	
+
 	public int getValue(int i) {
 		return board[i];
+	}
+
+	public void actionUp() {
+		moveUp();
+		addAfterMoveUp();
+		moveUp();
+	}
+
+	public void actionDown() {
+		moveDown();
+		addAfterMoveDown();
+		moveDown();
+	}
+
+	public void actionLeft() {
+		moveLeft();
+		addAfterMoveLeft();
+		moveLeft();
+	}
+
+	public void actionRight() {
+		moveRight();
+		addAfterMoveRight();
+		moveRight();
 	}
 }
