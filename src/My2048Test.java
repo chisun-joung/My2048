@@ -134,5 +134,4 @@ public class My2048Test {
 		myboard.printBoard();
 		assertEquals(8,myboard.getValue(3));
 	}
-
 }
