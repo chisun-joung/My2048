@@ -115,4 +115,20 @@ public class My2048Test {
 		myboard.printBoard();
 		assertEquals(8,myboard.getValue(3));
 	}
+	
+	@Test
+	public void testFindEmptyCell(){
+		My2048 myboard = new My2048(board);
+		myboard.findEmptyCell();
+		assertEquals(7,myboard.countEmptyCell());
+	}
+	
+	@Test
+	public void testAddCell(){
+		My2048 myboard = new My2048(board);
+		myboard.findEmptyCell();
+		myboard.putValueCell();
+		myboard.printBoard();
+		assertEquals(6,myboard.countEmptyCell());
+	}
 }

@@ -1,8 +1,14 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class My2048 {
 
 	private static final int X_SIZE = 4;
 	private static final int MAX_CELL = 16;
 	private int[] board;
+	private List<Integer> emptyCellList = new ArrayList<Integer>();
 
 	public My2048(int[] board) {
 		this.board = board;
@@ -193,5 +199,25 @@ public class My2048 {
 		moveRight();
 		addAfterMoveRight();
 		moveRight();
+	}
+
+	public void findEmptyCell() {
+		emptyCellList.clear();
+		for(int index = 0 ; index < board.length ; index++ ) {
+			if(board[index] == 0) {
+				emptyCellList.add(index);
+			}
+		}
+	}
+
+	public int countEmptyCell() {
+		return emptyCellList.size();
+	}
+
+	public void putValueCell() {
+		Collections.shuffle(emptyCellList);
+		int index = emptyCellList.remove(0);
+		board[index] = (int)(Math.random()*10)< 8 ? 2 : 4 ;
+		
 	}
 }
