@@ -131,4 +131,13 @@ public class My2048Test {
 		myboard.printBoard();
 		assertEquals(6,myboard.countEmptyCell());
 	}
+	
+	@Test
+	public void testMakeNewBoard(){
+		My2048 myboard = new My2048(board);
+		myboard.reStart();
+		myboard.printBoard();
+		assertEquals(14,myboard.countEmptyCell());
+	}
+	
 }

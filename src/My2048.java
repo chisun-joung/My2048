@@ -220,4 +220,14 @@ public class My2048 {
 		board[index] = (int)(Math.random()*10)< 8 ? 2 : 4 ;
 		
 	}
+
+	public void reStart() {
+		for(int i = 0; i < board.length; i++){
+			board[i] = 0;
+		}
+		findEmptyCell();
+		putValueCell();
+		findEmptyCell();
+		putValueCell();
+	}
 }
